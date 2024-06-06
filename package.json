@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/Games-By/client-data/issues"
   },
-  "homepage": "https://github.com/Games-By/client-data#readme"
+  "homepage": "https://github.com/Games-By/client-data#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.3"
+  }
 }
