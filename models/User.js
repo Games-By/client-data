@@ -1,4 +1,3 @@
-const { Binary } = require('mongodb');
 const mongoose = require('mongoose');
 
 
@@ -19,9 +18,11 @@ const PaymentMethods = new mongoose.Schema({
 });
 const User = mongoose.model('User', {
    name: String,
+   image: String,
    birth: String,
    email: String,
    password: String,
+   gender: String,
    customer_since: String,
    wish_list: [WishSchema],
    buyed_games: [WishSchema],
