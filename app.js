@@ -6,9 +6,12 @@ var app = express();
 app.use(express.json());
 app.use(cors());
 
-const AuthRegisterUserRoutes = require('./routes/AuthRegisterUserRoutes')
+const AuthRegisterUserRoutes = require('./routes/AuthRegisterUserRoutes');
+const AuthLoginController = require('./routes/AuthLoginRoutes');
 
-app.use(AuthRegisterUserRoutes)
+app.use(AuthRegisterUserRoutes);
+app.use(AuthLoginController);
+
 const port = process.env.PORT || 3001;
 
 app.listen(port, () => {
