@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const imageToBase64 = require('image-to-base64');
 
 module.exports = class AuthLoginController {
    static async login(req, res) {
@@ -47,5 +48,16 @@ module.exports = class AuthLoginController {
          console.error(error);
          res.status(500).json({ message: 'error authenticating user' });
       }
+   }
+
+   static async downloadImage(req, res) {
+      const { imageName } = req.query;
+      imageToBase64(`./uploads/${imageName}`)
+         .then((response) => {
+            res.send({ image: response });
+         })
+         .catch((err) => {
+            console.error(err);
+         });
    }
 };
