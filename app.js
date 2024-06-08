@@ -8,9 +8,12 @@ app.use(cors());
 
 const AuthRegisterUserRoutes = require('./routes/AuthRegisterUserRoutes');
 const AuthLoginController = require('./routes/AuthLoginRoutes');
+const GetUserController = require('./routes/GetUserRoutes');
 
 app.use(AuthRegisterUserRoutes);
 app.use(AuthLoginController);
+app.use(GetUserController);
+
 
 const port = process.env.PORT || 3001;
 
