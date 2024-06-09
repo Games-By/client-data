@@ -9,12 +9,14 @@ app.use(cors());
 const AuthRegisterUserRoutes = require('./routes/AuthRegisterUserRoutes');
 const AuthLoginController = require('./routes/AuthLoginRoutes');
 const GetUserController = require('./routes/GetUserRoutes');
-const WishListRoutes = require('./routes/WishListRoutes'); // Adicione esta linha
+const WishListRoutes = require('./routes/WishListRoutes');
+const BuyedGamesRoutes = require('./routes/BuyedGamesRoutes');
 
 app.use(AuthRegisterUserRoutes);
 app.use(AuthLoginController);
 app.use(GetUserController);
-app.use(WishListRoutes); // Adicione esta linha
+app.use(WishListRoutes);
+app.use(BuyedGamesRoutes);
 
 const port = process.env.PORT || 3001;
 
