@@ -11,12 +11,14 @@ const AuthLoginController = require('./routes/AuthLoginRoutes');
 const GetUserController = require('./routes/GetUserRoutes');
 const WishListRoutes = require('./routes/WishListRoutes');
 const BuyedGamesRoutes = require('./routes/BuyedGamesRoutes');
+const PaymentMethodsRoutes = require('./routes/PaymentMethodsRoutes');
 
 app.use(AuthRegisterUserRoutes);
 app.use(AuthLoginController);
 app.use(GetUserController);
 app.use(WishListRoutes);
 app.use(BuyedGamesRoutes);
+app.use(PaymentMethodsRoutes);
 
 const port = process.env.PORT || 3001;
 
