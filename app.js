@@ -7,15 +7,15 @@ app.use(express.json());
 app.use(cors());
 
 const AuthRegisterUserRoutes = require('./routes/AuthRegisterUserRoutes');
-const AuthLoginController = require('./routes/AuthLoginRoutes');
-const GetUserController = require('./routes/GetUserRoutes');
+const AuthLoginRoutes = require('./routes/AuthLoginRoutes');
+const GetUserRoutes = require('./routes/GetUserRoutes');
 const WishListRoutes = require('./routes/WishListRoutes');
 const BuyedGamesRoutes = require('./routes/BuyedGamesRoutes');
 const PaymentMethodsRoutes = require('./routes/PaymentMethodsRoutes');
 
 app.use(AuthRegisterUserRoutes);
-app.use(AuthLoginController);
-app.use(GetUserController);
+app.use(AuthLoginRoutes);
+app.use(GetUserRoutes);
 app.use(WishListRoutes);
 app.use(BuyedGamesRoutes);
 app.use(PaymentMethodsRoutes);
