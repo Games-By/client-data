@@ -4,7 +4,7 @@ const dbUser = process.env.DB_USER;
 const dbPassword = process.env.DB_PASSWORD;
 const connect = () => {
    mongoose.connect(
-      `mongodb+srv://${dbUser}:${dbPassword}@client-data.eqkqrqx.mongodb.net/`
+      `mongodb+srv://${dbUser}:${dbPassword}@client-data.eqkqrqx.mongodb.net/client-data`
    );
    const connection = mongoose.connection;
    connection.on('error', (err) => {

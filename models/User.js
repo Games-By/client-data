@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const WishSchema = new mongoose.Schema({
    name: String,
    description: String,
@@ -10,13 +9,15 @@ const WishSchema = new mongoose.Schema({
    releaseYear: Number,
    rating: Number
 });
-const PaymentMethods = new mongoose.Schema({
+
+const PaymentMethodSchema = new mongoose.Schema({
    cardHolderName: String,
    cardNumber: String,
    expirationDate: String,
    cvv: String
 });
-const User = mongoose.model('User', {
+
+const UserSchema = new mongoose.Schema({
    name: String,
    image: String,
    birth: String,
@@ -26,7 +27,9 @@ const User = mongoose.model('User', {
    customer_since: String,
    wish_list: [WishSchema],
    buyed_games: [WishSchema],
-   payment_methods: [PaymentMethods],
+   payment_methods: [PaymentMethodSchema],
 });
+
+const User = mongoose.model('User', UserSchema, 'users');
 
 module.exports = User;
