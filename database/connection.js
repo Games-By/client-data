@@ -4,10 +4,10 @@ require('dotenv').config();
 const dbConnect = process.env.NODE_ENV === 'production' ? process.env.PROD_DB_URL : process.env.DEV_DB_URL;
 
 const prodDBUrl = process.env.PROD_DB_URL;
-const stagingDBUrl = process.env.STAGING_DB_URL;
+// const stagingDBUrl = process.env.STAGING_DB_URL;
 const devDBUrl = process.env.DEV_DB_URL;
 
-if (!prodDBUrl || !stagingDBUrl || !devDBUrl) {
+if (!prodDBUrl || !devDBUrl) {
    console.error(
       'Database credentials are missing. Please check your .env file.'
    );
