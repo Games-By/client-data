@@ -1,7 +1,17 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const dbConnect = process.env.NODE_ENV === 'production' ? process.env.PROD_DB_URL : process.env.DEV_DB_URL;
+const getDatabaseURL = () => {
+   if (process.env.NODE_ENV === 'production') {
+      return process.env.PROD_DB_URL;
+   } else if (process.env.NODE_ENV === 'staging') {
+      return process.env.STAGING_DB_URL;
+   } else {
+      return process.env.DEV_DB_URL;
+   }
+};
+
+const dbConnect = getDatabaseURL();
 
 if (!dbConnect) {
    console.error(
