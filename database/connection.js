@@ -9,26 +9,16 @@ if (!dbUser || !dbPassword) {
    process.exit(1);
 }
 
-const connect = async () => {
-   try {
-      await mongoose.connect(
-         `mongodb+srv://${dbUser}:${dbPassword}@client-data.eqkqrqx.mongodb.net/client-data`,
-         {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            serverSelectionTimeoutMS: 5000, 
-         }
-      );
-
-      console.log('database connected!');
-   } catch (err) {
-      console.error('Error connecting to database', err);
-      process.exit(1);
-   }
-
+const connect = () => {
+   mongoose.connect(
+      `mongodb+srv://${dbUser}:${dbPassword}@client-data.eqkqrqx.mongodb.net/?retryWrites=true&w=majority&appName=client-data`
+   );
    const connection = mongoose.connection;
    connection.on('error', (err) => {
-      console.error('Error in MongoDB connection:', err);
+      console.error('Erro ao conectar ao banco de dados', err);
+   });
+   connection.on('open', () => {
+      console.log('Banco de dados conectado!');
    });
 };
 
