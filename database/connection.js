@@ -6,7 +6,7 @@ const getDatabaseURL = async () => {
       return process.env.PROD_DB_URL;
    } else if (process.env.NODE_ENV === 'staging') {
       return process.env.STAGING_DB_URL;
-   } else {
+   } else if (process.env.NODE_ENV === 'development') {
       return process.env.DEV_DB_URL;
    }
 };
