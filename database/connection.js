@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const dbConnect = process.env.NODE_ENV === 'Production' ? process.env.PROD_DB_URL : process.env.DEV_DB_URL;
+const dbConnect = process.env.NODE_ENV === 'production' ? process.env.PROD_DB_URL : process.env.DEV_DB_URL;
 
 if (!dbConnect) {
    console.error(
@@ -9,6 +9,8 @@ if (!dbConnect) {
    );
    process.exit(1);
 }
+
+console.log(process.env.NODE_ENV)
 
 const connect = () => {
    mongoose.connect(`${dbConnect}`);
