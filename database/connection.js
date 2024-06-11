@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const dbConnect = process.env.NODE_ENV === 'production' ? process.env.PROD_DB_URL : process.env.DEV_DB_URL;
+const dbConnect = process.env.NODE_ENV === 'Production' ? process.env.PROD_DB_URL : process.env.DEV_DB_URL;
 
 if (!dbConnect) {
    console.error(
-      'Database credentials are missing. Please check your .env file.'
+      'Database credentials are missing. Please check your .env file.', dbConnect
    );
    process.exit(1);
 }
