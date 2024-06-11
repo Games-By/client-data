@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const dbConnect = process.env.DB_CONNECT;
 
-if (!dbUser || !dbPassword) {
+if (!dbConnect) {
    console.error('Database credentials are missing. Please check your .env file.');
    process.exit(1);
 }
