@@ -27,14 +27,18 @@ const initializeEnvironment = async () => {
 };
 initializeEnvironment().then(() => {
    const connect = () => {
-      mongoose.connect(`${dbConnect}`);
-      const connection = mongoose.connection;
-      connection.on('error', (err) => {
-         console.error('Error connecting to database', err);
-      });
-      connection.on('open', () => {
-         console.log('MongoDB connected!');
-      });
+      try {
+         mongoose.connect(`${dbConnect}`);
+         const connection = mongoose.connection;
+         connection.on('error', (err) => {
+            console.error('Error connecting to database', err);
+         });
+         connection.on('open', () => {
+            console.log('MongoDB connected!');
+         });
+      } catch (error) {
+         console.error('An error occurred while connecting to the database:', error);
+      }
    };
    connect();
 });
