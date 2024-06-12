@@ -1,11 +1,13 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
+const morgan = require('morgan');
 
 const app = express();
 app.use(express.json());
 
 app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(morgan('combined'));
 
 const AuthRegisterUserRoutes = require('./routes/AuthRegisterUserRoutes');
 const AuthLoginRoutes = require('./routes/AuthLoginRoutes');
