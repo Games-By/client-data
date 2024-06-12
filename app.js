@@ -4,16 +4,8 @@ require('dotenv').config();
 
 const app = express();
 app.use(express.json());
-const corsOptions = {
-   origin: ['*'],
-   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-   allowedHeaders: ['Content-Type', 'Authorization'],
-   credentials: true,
-};
 
-app.use(cors(corsOptions));
-
-app.options('*', cors(corsOptions));
+app.use(cors({ origin: 'http://localhost:3000' }));
 
 const AuthRegisterUserRoutes = require('./routes/AuthRegisterUserRoutes');
 const AuthLoginRoutes = require('./routes/AuthLoginRoutes');

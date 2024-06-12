@@ -8,14 +8,6 @@ module.exports = class AuthRegisterUserController {
    }
 
    static async registerUser(req, res) {
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      res.setHeader(
-         'Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'
-      );
-      res.setHeader(
-         'Access-Control-Allow-Headers', 'X-Requested-With,content-type'
-      );
-      res.setHeader('Access-Control-Allow-Credentials', true);
       const {
          name,
          birth,
@@ -87,21 +79,12 @@ module.exports = class AuthRegisterUserController {
          });
       } catch (error) {
          res.status(500).json({
-            message: `error registering user, please try again later`,
+            message: `error registering usererror registering user, please try again later`,
             error,
          });
       }
    }
-
    static async uploadImage(req, res) {
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      res.setHeader(
-         'Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'
-      );
-      res.setHeader(
-         'Access-Control-Allow-Headers', 'X-Requested-With,content-type'
-      );
-      res.setHeader('Access-Control-Allow-Credentials', true);
       let image = req.body;
 
       if (req.file) {
