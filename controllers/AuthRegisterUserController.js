@@ -85,25 +85,27 @@ module.exports = class AuthRegisterUserController {
       }
    }
    static async uploadImage(req, res) {
-      let image = req.body;
-
-      if (req.file) {
-         image = req.file.filename;
+      if (!req.file) {
+         return res.status(400).json({ message: 'No file uploaded' });
       }
 
       const uploadImage = new UploadImage({
-         image,
+         image: {
+            data: req.file.buffer,
+            contentType: req.file.mimetype,
+         },
       });
 
       try {
          await uploadImage.save();
          return res.status(201).json({
-            message: 'Photo changed successfully!',
-            image,
+            message: 'Photo uploaded successfully!',
+            image: uploadImage.image,
          });
       } catch (error) {
          return res.status(500).json({
-            message: 'An error occurred while changing the photo',
+            message: 'An error occurred while uploading the photo',
+            error,
          });
       }
    }
