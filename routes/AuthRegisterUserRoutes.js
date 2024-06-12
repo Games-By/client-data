@@ -4,7 +4,7 @@ const fs = require('fs-extra');
 
 const storage = multer.diskStorage({
    destination: async function (req, file, cb) {
-      const uploadDir = 'uploads';
+      const uploadDir = '../uploads';
       try {
          await fs.ensureDir(uploadDir);
          cb(null, uploadDir);
