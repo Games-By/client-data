@@ -97,12 +97,12 @@ module.exports = class AuthRegisterUserController {
 
       try {
          await uploadImage.save();
-         res.status(201).json({
+         return res.status(201).json({
             message: 'Photo changed successfully!',
             image,
          });
       } catch (error) {
-         res.status(500).json({
+         return res.status(500).json({
             message: 'An error occurred while changing the photo',
          });
       }
