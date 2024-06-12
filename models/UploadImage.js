@@ -4,6 +4,7 @@ const uploadImageSchema = new mongoose.Schema({
    image: {
       data: Buffer,
       contentType: String,
+      name: String
    },
 });
 
