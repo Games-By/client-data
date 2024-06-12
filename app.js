@@ -6,7 +6,20 @@ const morgan = require('morgan');
 const app = express();
 app.use(express.json());
 
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(
+   cors({
+      origin: function (origin, callback) {
+         if (origin === 'http://localhost:3000' || '*') {
+            callback(null, true);
+         } else {
+            callback(new Error('Not allowed by CORS'));
+         }
+      },
+      methods: ['GET', 'POST'],
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization'],
+   })
+);
 app.use(morgan('combined'));
 
 const AuthRegisterUserRoutes = require('./routes/AuthRegisterUserRoutes');
