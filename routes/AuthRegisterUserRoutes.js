@@ -1,10 +1,20 @@
 const router = require('express').Router();
 const multer = require('multer');
 const fs = require('fs-extra');
+const path = require('path');
+
+const uploadDir = path.join(__dirname, 'uploads');
+
+if (!fs.existsSync(uploadDir)) {
+   try {
+      fs.mkdirSync(uploadDir);
+   } catch (err) {
+      console.error('Error creating directory:', err);
+   }
+}
 
 const storage = multer.diskStorage({
    destination: async function (req, file, cb) {
-      const uploadDir = '../uploads';
       try {
          await fs.ensureDir(uploadDir);
          cb(null, uploadDir);
