@@ -13,6 +13,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+app.options('*', cors(corsOptions));
+
 const AuthRegisterUserRoutes = require('./routes/AuthRegisterUserRoutes');
 const AuthLoginRoutes = require('./routes/AuthLoginRoutes');
 const GetUserRoutes = require('./routes/GetUserRoutes');
