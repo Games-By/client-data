@@ -93,6 +93,7 @@ module.exports = class AuthRegisterUserController {
          image: {
             data: req.file.buffer,
             contentType: req.file.mimetype,
+            name: req.file.originalname
          },
       });
 
