@@ -17,40 +17,17 @@ const upload = multer({
          return cb(new Error('Only image files (png, jpg) are allowed!'));
       }
       cb(null, true);
-   },
+   }
 });
 
 const AuthRegisterUserController = require('../controllers/AuthRegisterUserController');
 
 router.get('/', AuthRegisterUserController.init);
-router.post('/auth/register/user', (req, res) => {
-   console.log('Requisição para registrar usuário:', req.body);
-   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-   res.setHeader(
-      'Access-Control-Allow-Methods',
-      'GET, POST, OPTIONS, PUT, PATCH, DELETE'
-   );
-   res.setHeader(
-      'Access-Control-Allow-Headers',
-      'X-Requested-With,content-type'
-   );
-   res.setHeader('Access-Control-Allow-Credentials', true);
-   res.json({ message: 'User registered successfully' });
-});
-
-router.post('/upload/image', upload.single('image'), (req, res) => {
-   console.log('Requisição para upload de imagem:', req.file);
-   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-   res.setHeader(
-      'Access-Control-Allow-Methods',
-      'GET, POST, OPTIONS, PUT, PATCH, DELETE'
-   );
-   res.setHeader(
-      'Access-Control-Allow-Headers',
-      'X-Requested-With,content-type'
-   );
-   res.setHeader('Access-Control-Allow-Credentials', true);
-   res.json({ message: 'Image registered successfully' });
-});
+router.post('/auth/register/user', AuthRegisterUserController.registerUser);
+router.post(
+   '/upload/image',
+   upload.single('image'),
+   AuthRegisterUserController.uploadImage
+);
 
 module.exports = router;
