@@ -2,6 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const imageToBase64 = require('image-to-base64');
+const UploadImage = require('../models/UploadImage');
 
 module.exports = class AuthLoginController {
    static async login(req, res) {
@@ -50,14 +51,29 @@ module.exports = class AuthLoginController {
       }
    }
 
-   static async downloadImage(req, res) {
+   static async downloadProfilePhoto(req, res) {
       const { imageName } = req.query;
-      imageToBase64(`./uploads/${imageName}`)
-         .then((response) => {
-            res.send({ image: response });
-         })
-         .catch((err) => {
-            console.error(err);
+
+      try {
+         const imageRecord = await UploadImage.findOne({
+            'image.name': imageName,
          });
+
+         if (!imageRecord) {
+            return res.status(404).json({ message: 'Image not found!' });
+         }
+
+         const base64Image = imageRecord.image.data.toString('base64');
+
+         res.send({
+            image: base64Image,
+            contentType: imageRecord.image.contentType,
+         });
+      } catch (err) {
+         console.error('Error getting profile photo:', err);
+         return res
+            .status(500)
+            .json({ message: 'Error getting profile photo:' });
+      }
    }
 };
