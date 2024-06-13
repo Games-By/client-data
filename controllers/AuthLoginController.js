@@ -1,7 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const imageToBase64 = require('image-to-base64');
 const UploadImage = require('../models/UploadImage');
 
 module.exports = class AuthLoginController {
