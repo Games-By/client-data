@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const UploadImage = require('../models/UploadImage');
 const bcrypt = require('bcrypt');
+const moment = require('moment');
 
 function validateEmail(email, confirmEmail) {
    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -147,7 +148,10 @@ function validateUserID(userID) {
    if (validateCPF(cleanedUserID) || validatePassport(cleanedUserID)) {
       return { status: 200, message: 'UserID is valid' };
    } else {
-      return { status: 422, message: 'Invalid UserID format' };
+      return {
+         status: 422,
+         message: 'Invalid UserID format',
+      };
    }
 }
 
@@ -168,13 +172,6 @@ function validateFields(data) {
    const birthResult = validateBirth(birth);
    if (birthResult.status !== 200) {
       return birthResult;
-   }
-
-   const userIDResult = validateUserID(userID);
-   if (userIDResult.status !== 200) {
-      return res
-         .status(userIDResult.status)
-         .json({ message: userIDResult.message });
    }
 
    return { status: 200, message: 'All fields are valid' };
@@ -213,7 +210,7 @@ module.exports = class AuthRegisterUserController {
          if (!req.body[field]) {
             return res
                .status(422)
-               .json({ message: `The field '${field}' is required!` }, field);
+               .json({ message: `The field '${field}' is required!` });
          }
       }
 
@@ -231,6 +228,12 @@ module.exports = class AuthRegisterUserController {
          return res
             .status(validation.status)
             .json({ message: validation.message });
+      }
+      const userIDResult = validateUserID(userID);
+      if (userIDResult.status !== 200) {
+         return res
+            .status(userIDResult.status)
+            .json({ message: userIDResult.message });
       }
       const userExists = await User.findOne({ email: email });
       if (userExists) {
