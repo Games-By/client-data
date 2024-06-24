@@ -156,8 +156,7 @@ function validateUserID(userID) {
 }
 
 function validateFields(data) {
-   const { userID, birth, email, confirmEmail, password, confirmPassword } =
-      data;
+   const { birth, email, confirmEmail, password, confirmPassword } = data;
 
    const emailResult = validateEmail(email, confirmEmail);
    if (emailResult.status !== 200) {
@@ -215,7 +214,6 @@ module.exports = class AuthRegisterUserController {
 
       const validation = validateFields({
          name,
-         userID,
          birth,
          email,
          confirmEmail,
@@ -228,11 +226,13 @@ module.exports = class AuthRegisterUserController {
             .status(validation.status)
             .json({ message: validation.message });
       }
-      const userIDResult = validateUserID(userID);
-      if (userIDResult.status !== 200) {
-         return res
-            .status(userIDResult.status)
-            .json({ message: userIDResult.message });
+      if (userID) {
+         const userIDResult = validateUserID(userID);
+         if (userIDResult.status !== 200) {
+            return res
+               .status(userIDResult.status)
+               .json({ message: userIDResult.message });
+         }
       }
       const userExists = await User.findOne({ email: email });
       if (userExists) {
