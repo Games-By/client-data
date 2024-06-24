@@ -197,7 +197,6 @@ module.exports = class AuthRegisterUserController {
 
       const requiredFields = [
          'name',
-         'userID',
          'birth',
          'email',
          'confirmEmail',
