@@ -2,10 +2,32 @@ const mongoose = require('mongoose');
 
 const WishSchema = new mongoose.Schema({
    name: String,
-   description: String,
+   description: {
+      en: String,
+      pt: String,
+      zh: String,
+      es: String,
+      hi: String,
+      fr: String,
+      ar: String,
+      bn: String,
+      ru: String,
+      id: String,
+   },
    image: String,
    platform: String,
-   genre: String,
+   genres: {
+      en: String,
+      pt: String,
+      zh: String,
+      es: String,
+      hi: String,
+      fr: String,
+      ar: String,
+      bn: String,
+      ru: String,
+      id: String,
+   },
    releaseYear: Number,
    rating: Number
 });
