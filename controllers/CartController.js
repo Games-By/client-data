@@ -1,7 +1,7 @@
 const User = require('../models/User');
 
-module.exports = class WishListController {
-   static async getWishList(req, res) {
+module.exports = class CartController {
+   static async getCart(req, res) {
       const { id } = req.params;
       let user = null;
       try {
@@ -15,15 +15,15 @@ module.exports = class WishListController {
          if (!user) {
             return res.status(404).json({ error: 'User not Found!' });
          }
-         const wishlist = user.wish_list
-         res.status(200).json({ wishlist });
+         const cart = user.cart
+         res.status(200).json({ cart });
       } catch (error) {
          console.error(error);
          res.status(500).json({ error: 'Internal server error' });
       }
    }
-   static async addToWishList(req, res) {
-      const { userId, wishItem } = req.body;
+   static async addToCart(req, res) {
+      const { userId, cartItem } = req.body;
 
       try {
          const user = await User.findById(userId);
@@ -31,11 +31,11 @@ module.exports = class WishListController {
             return res.status(404).json({ error: 'User not found' });
          }
 
-         user.wish_list.push(wishItem);
+         user.cart.push(cartItem);
          await user.save();
 
          res.status(200).json({
-            message: 'Item added to wish list successfully',
+            message: 'Item added to cart successfully',
             user,
          });
       } catch (error) {
@@ -44,7 +44,7 @@ module.exports = class WishListController {
       }
    }
 
-   static async removeFromWishList(req, res) {
+   static async removeFromCart(req, res) {
       const { userId, itemId } = req.body;
 
       try {
@@ -53,11 +53,11 @@ module.exports = class WishListController {
             return res.status(404).json({ error: 'User not found' });
          }
 
-         user.wish_list.pull(itemId);
+         user.cart.pull(itemId);
          await user.save();
 
          res.status(200).json({
-            message: 'Item removed from wish list successfully',
+            message: 'Item removed from cart successfully',
             user,
          });
       } catch (error) {
@@ -66,7 +66,7 @@ module.exports = class WishListController {
       }
    }
 
-   static async updateWishList(req, res) {
+   static async updateCart(req, res) {
       const { userId, itemId, updatedItem } = req.body;
 
       try {
@@ -75,20 +75,20 @@ module.exports = class WishListController {
             return res.status(404).json({ error: 'User not found' });
          }
 
-         const index = user.wish_list.findIndex(
+         const index = user.cart.findIndex(
             (item) => item && item._id && item._id.toString() === itemId
          );
          if (index === -1) {
             return res
                .status(404)
-               .json({ error: 'Item not found in wish list' });
+               .json({ error: 'Item not found in cart' });
          }
 
-         user.wish_list[index] = updatedItem;
+         user.cart[index] = updatedItem;
          await user.save();
 
          res.status(200).json({
-            message: 'Wish list item updated successfully',
+            message: 'cart item updated successfully',
             user,
          });
       } catch (error) {
