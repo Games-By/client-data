@@ -1,36 +1,12 @@
 const mongoose = require('mongoose');
 
-const WishSchema = new mongoose.Schema({
-   name: String,
-   description: {
-      en: String,
-      pt: String,
-      zh: String,
-      es: String,
-      hi: String,
-      fr: String,
-      ar: String,
-      bn: String,
-      ru: String,
-      id: String,
+const PriceSchema = new mongoose.Schema(
+   {
+      currencyCode: String,
+      amount: Number,
    },
-   image: String,
-   platform: String,
-   genres: {
-      en: String,
-      pt: String,
-      zh: String,
-      es: String,
-      hi: String,
-      fr: String,
-      ar: String,
-      bn: String,
-      ru: String,
-      id: String,
-   },
-   releaseYear: Number,
-   rating: Number
-});
+   { _id: false }
+);
 
 const CartSchema = new mongoose.Schema({
    name: String,
@@ -62,22 +38,46 @@ const CartSchema = new mongoose.Schema({
    },
    releaseYear: Number,
    rating: Number,
-   prices: PriceSchema
-})
-
-const PriceSchema = new Schema(
-   {
-      currencyCode: String,
-      amount: Number,
-   },
-   { _id: false }
-);
+   prices: PriceSchema,
+});
 
 const PaymentMethodSchema = new mongoose.Schema({
    cardHolderName: String,
    cardNumber: String,
    expirationDate: String,
-   cvv: String
+   cvv: String,
+});
+
+const WishSchema = new mongoose.Schema({
+   name: String,
+   description: {
+      en: String,
+      pt: String,
+      zh: String,
+      es: String,
+      hi: String,
+      fr: String,
+      ar: String,
+      bn: String,
+      ru: String,
+      id: String,
+   },
+   image: String,
+   platform: String,
+   genres: {
+      en: String,
+      pt: String,
+      zh: String,
+      es: String,
+      hi: String,
+      fr: String,
+      ar: String,
+      bn: String,
+      ru: String,
+      id: String,
+   },
+   releaseYear: Number,
+   rating: Number,
 });
 
 const UserSchema = new mongoose.Schema({
