@@ -27,6 +27,7 @@ const GetUserRoutes = require('./routes/GetUserRoutes');
 const WishListRoutes = require('./routes/WishListRoutes');
 const BuyedGamesRoutes = require('./routes/BuyedGamesRoutes');
 const PaymentMethodsRoutes = require('./routes/PaymentMethodsRoutes');
+const CartRoutes = require('./routes/CartRoutes');
 
 app.use(AuthRegisterUserRoutes);
 app.use(AuthLoginRoutes);
@@ -34,6 +35,7 @@ app.use(GetUserRoutes);
 app.use(WishListRoutes);
 app.use(BuyedGamesRoutes);
 app.use(PaymentMethodsRoutes);
+app.use(CartRoutes);
 
 const port = process.env.PORT || 3001;
 
