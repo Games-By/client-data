@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(
    cors({
       origin: function (origin, callback) {
-         if (origin === 'http://localhost:3000' || '*') {
+         if (origin === 'http://localhost:3000/' || 'https://games-by.vercel.app/' || '*') {
             callback(null, true);
          } else {
             callback(new Error('Not allowed by CORS'));
