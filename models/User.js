@@ -38,7 +38,7 @@ const CartSchema = new mongoose.Schema({
    },
    releaseYear: Number,
    rating: Number,
-   prices: PriceSchema,
+   prices: [PriceSchema],
 });
 
 const PaymentMethodSchema = new mongoose.Schema({
