@@ -82,6 +82,7 @@ const WishSchema = new mongoose.Schema({
 
 const UserSchema = new mongoose.Schema({
    name: String,
+   username: String,
    image: String,
    birth: String,
    userID: String,
