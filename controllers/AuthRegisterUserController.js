@@ -183,6 +183,7 @@ module.exports = class AuthRegisterUserController {
    static async registerUser(req, res) {
       const {
          name,
+         username,
          birth,
          userID,
          email,
@@ -196,6 +197,7 @@ module.exports = class AuthRegisterUserController {
 
       const requiredFields = [
          'name',
+         'username',
          'birth',
          'email',
          'confirmEmail',
@@ -251,6 +253,7 @@ module.exports = class AuthRegisterUserController {
       }
       const user = new User({
          name,
+         username,
          birth,
          userID,
          email,
