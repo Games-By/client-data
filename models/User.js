@@ -2,8 +2,18 @@ const mongoose = require('mongoose');
 
 const PriceSchema = new mongoose.Schema(
    {
-      currencyCode: String,
-      amount: Number,
+      'en-US': {
+         currencyCode: String,
+         amount: Number,
+      },
+      'pt-BR': {
+         currencyCode: String,
+         amount: Number,
+      },
+      'es-ES': {
+         currencyCode: String,
+         amount: Number,
+      },
    },
    { _id: false }
 );
