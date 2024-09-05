@@ -17,15 +17,19 @@ const CartSchema = new mongoose.Schema({
       'es-ES': String,
    },
    image: String,
-   platform: String,
+   platform: [String],
    genres: {
-      'en-US': String,
-      'pt-BR': String,
-      'es-ES': String,
+      'en-US': [String],
+      'pt-BR': [String],
+      'es-ES': [String],
    },
    releaseYear: Number,
    rating: Number,
-   prices: [PriceSchema],
+   prices: {
+      'en-US': PriceSchema,
+      'pt-BR': PriceSchema,
+      'es-ES': PriceSchema,
+   },
 });
 
 const PaymentMethodSchema = new mongoose.Schema({
@@ -43,11 +47,11 @@ const WishSchema = new mongoose.Schema({
       'es-ES': String,
    },
    image: String,
-   platform: String,
+   platform: [String],
    genres: {
-      'en-US': String,
-      'pt-BR': String,
-      'es-ES': String,
+      'en-US': [String],
+      'pt-BR': [String],
+      'es-ES': [String],
    },
    releaseYear: Number,
    rating: Number,
